@@ -9,6 +9,7 @@
                 <div class="search">
                     <form role="search" action="/?" id="" method="get">
                         <select v-model="searchArr.type" @change="searchFilter" id="">
+                            <option value="0">Selecione uma opção</option>
                             <option value="1">Arquivo Digital</option>
                             <option value="2">Arquivo Físico</option>
                         </select>
@@ -62,7 +63,7 @@
                 Categories: [],
                 search: '',
                 searchArr: {
-                    type: 1,
+                    type: 0,
                     category: 0,
                     dataCadastro: '2021-11-05',
                 }
@@ -116,6 +117,7 @@
                 .then(response => {
                     console.log(response.data);
                     this.homePosts = response.data.data;
+                    this.paginate = response.data.links;
                     console.log(this.homePosts);
                 })
                 .catch((error) => {

@@ -16,7 +16,7 @@
     </head>
     <body class="antialiased">
         <div id="app" class="py-4">
-            <example-component></example-component>
+            <home-component></home-component>
         </div>
 
         <script src="{{asset('js/app.js')}}"></script>
