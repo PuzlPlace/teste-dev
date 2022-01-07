@@ -1,68 +1,66 @@
-# Teste para candidatos à vaga de Desenvolvedor Full Stack.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-Olá, caro desenvolvedor, nesse teste analisaremos seu conhecimento geral e velocidade de desenvolvimento. Abaixo explicaremos tudo o que será necessário.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-# Instruções
-- Você deve desenvolver uma API, utilizando `Laravel`, `Lumen` ou `Node`.
-A escolha das bibliotecas, banco de dados, arquitetura, etc, fica a seu critério.
+## About Laravel
 
-- O código precisa rodar em múltiplas plataformas, utilizando a Docker.
-Altere o arquivo README explicando o que é preciso para rodar sua aplicação.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-# O teste
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-**Back-End**
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-A primeira etapa será o desenvolvimento do backend.
+## Learning Laravel
 
-**Descrição**:
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Você deverá desenvolver uma 'mini api' para que seja possível realizar operações CRUD de uma estante de livros.
-Será necessário gerar um relatório a partir destas informações.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-# Condições:
-Você poderá utilizar qualquer tecnologia de banco relacional ou apenas MongoDB como banco não relacional.
-> - O sistema deverá ser separado por módulos, tendo eles, seus respectivos controllers, rotas, models, camada de serviço e repositório.
-> - O sistema deverá retornar os livros de forma paginada.
+## Laravel Sponsors
 
-**Cada livro deverá possuir** :
-- ID
-- Nome
-- Autor
-- Categoria
-- Código (único)
-- Tipo (arquivo digital ou físico)
-- Tamanho (Peso do livro físico ou tamanho do arquivo)
-- Diferenciais : Testes unitários.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-# Front-End
-**Para a segunda etapa do teste, você deverá desenvolver uma SPA (Single Page Application) com `Vue.js 2` e nela deve ser possível:**
-> - Ver a lista de livros cadastrados
-> - Criar um novo livro
-> - Editar um livro existente
-> - Apagar um livro existente
-> - Filtragem por categoria, tipo de arquivo e nome.
-> - Elaboração de um relatório/dashboard de livros cadastrados, sendo possível filtrar por categoria e por período.
+### Premium Partners
 
-**Condições**:
-> - A página deve ser responsiva.
-> - A página deve funcionar 100% via AJAX, sem outros carregamentos de páginas.
-> - Os dados das requisições deverão ser gerenciados pelo VUEX.
-> - Ao criar/editar um livro, o campo "categoria" deverá ser um SELECT.
-> - A definição de peso ou tamanho do arquivo deverá ser realizada pela função `watch`, verificando o tipo do arquivo: *arquivo digital ou físico*
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[CMS Max](https://www.cmsmax.com/)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
+- **[Romega Software](https://romegasoftware.com)**
 
-**Dicas**:
-> - Você pode usar frameworks, tanto para o front-end (Vuejs) e tanto para o back-end.
-> - Você pode usar ferramentas de automação (Grunt, Gulp), mas deverá informar o uso completo para funcionamento do teste.
-> - Será considerado ponto positivo no teste a utilização de orientação a objetos, design patterns e rotinas para testes.
+## Contributing
 
-**Entrega**
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-Para iniciar o teste, faça um fork deste repositório, crie uma branch com o seu nome completo e depois envie-nos o pull request. Se você apenas clonar o repositório não vai conseguir fazer push e depois vai ser mais complicado fazer o pull request.
-Nossa análise
-Organização do código, legibilidade e comentários, uso de padrões.
-Histórico de commits.
+## Code of Conduct
 
-**Dúvidas?**
-Quaisquer dúvidas que você venha a ter, abra você mesmo uma nova issue, ou mande um e-mail.
-Boa sorte!
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
