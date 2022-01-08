@@ -10,5 +10,5 @@ Não foram considerados Validators, Resources e Abstrações
   - `$ sudo-apt get update`
   - `$ sudo apt-get install php-sqlite3`
 - Iniciar Migrações/Testes
-  - '$ php artisan migrate:fresh --seed'
-  - '$ php artisan test'
+  - `$ php artisan migrate:fresh --seed`
+  - `$ php artisan test`
