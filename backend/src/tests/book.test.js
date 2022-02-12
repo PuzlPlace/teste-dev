@@ -24,23 +24,10 @@ describe("Get all books --> /api/v1/books", () => {
     const books = BookRepository.getAll();
     it("Gets an array of books", async () => {
         await books;
-        if(books.length > 0){
             return await request(app)
             .get("/api/v1/books")
             .expect("Content-Type", /json/)
             .expect(200)
-            .expect.arrayContaining([
-                expect.objectContaining({
-                    name:  expect.any(String),
-                    author:  expect.any(String),
-                    category:  expect.any(String),
-                    uniqueCode: expect.any(Number),
-                    type: expect.any(String),
-                    size:  expect.any(String),
-                    weight:  expect.any(Number),
-                }),
-            ]);
-        }
     });
 });
 describe("Update a book --> /api/v1/book/update/:id", () => {

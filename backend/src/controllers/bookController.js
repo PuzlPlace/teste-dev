@@ -1,11 +1,16 @@
-const BookRepository = require("../repository/booksRepository");
 const BookServices = require("../services/bookServices")
+const {bookSchema}= require("../validation/books/book.schema");
+
 
 const createBook = async (req, res) => {
     try {
+        await bookSchema.validateAsync(req.body);
         await BookServices.addBook(req.body)
         res.status(201).json({ message: 'Livro cadastrado com sucesso' });
     } catch (error) {
+        if(error.isJoi === true){
+            res.status(422).json({ message: 'Erro: ' + error })
+        }
         res.status(500).json({ message: 'Erro: ' + error })
     }
 }
