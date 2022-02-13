@@ -9,30 +9,29 @@ const getSpecific = async (where) => await Book.findOne(where);
 
 const save = async (data) => {
     const { name, author, category, uniqueCode, type, size, weight } = data;
-    
-   const book = await Book.create({name: name,
+
+    const book = await Book.create({
+        name: name,
         author: author,
         category: category,
-        unique_code: uniqueCode,
+        uniqueCode: uniqueCode,
         type: type,
         size: size,
-        weight: weight,});
+        weight: weight,
+    });
     return book;
 }
-const put = async (data) => {
-    const { name, author, category, uniqueCode, type, size, weight } = data;
-    const book = new Book;
-    book.name = name;
-    book.author = author;
-    book.category = category;
-    book.unique_code = uniqueCode;
-    book.type = type;
-    book.size = size;
-    book.weight = weight;
+const put = async (data, id) => {
 
-    bookCode = book.unique_code
-    await Book.update({ book }, { where: { id: bookCode } });
-    return book;
+    const { name, author, category, uniqueCode, type, size, weight} = data;
+
+    await Book.update({ name: name,
+        author: author,
+        category: category,
+        uniqueCode: uniqueCode,
+        type: type,
+        size: size,
+        weight: weight},{where: {id: id}});
 }
 const remove = async where => await Book.destroy(where);
 

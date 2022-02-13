@@ -6,6 +6,8 @@ router.post("/book/create", bookController.createBook);
 router.get("/books", bookController.readBook);
 router.put("/book/update/:id",  bookController.updateBook);
 router.delete("/book/delete/:id", bookController.deleteBook);
+router.get("/book/:id", bookController.specificBook);
+
 
 
 

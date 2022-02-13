@@ -21,7 +21,7 @@ const Book = db.define("book", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  unique_code: {
+  uniqueCode: {
     type: Sequelize.INTEGER,
     allowNull: false,
     unique: true

@@ -9,15 +9,15 @@ describe("Post Create a Book --> /api/v1/book/create", () => {
             name: 'name',
             author: 'author',
             category: 'category',
-            uniqueCode: 41234,
+            uniqueCode: 4123,
             type: 'digital',
             size: '500mb',
-            weight: null,
+            weight: 30,
         }).expect("Content-Type", /json/)
             .expect(201)
     });
     afterAll(async () => {
-        await BookRepository.remove({ where: { unique_code: 41234 } });
+        await BookRepository.remove({ where: { uniqueCode: 41234 } });
     });
 });
 describe("Get all books --> /api/v1/books", () => {
@@ -31,10 +31,10 @@ describe("Get all books --> /api/v1/books", () => {
     });
 });
 describe("Update a book --> /api/v1/book/update/:id", () => {
-    const bookFound = BookRepository.getSpecificWithId(3)
+    const bookFound = BookRepository.getSpecificWithId(1)
     it("Updates an specific book", async () => {
         await bookFound;
-        return await request(app).put('/api/v1/book/update/3').send({
+        return await request(app).put('/api/v1/book/update/1').send({
             name: 'name',
             author: 'author',
             category: 'category',
@@ -68,7 +68,7 @@ describe("Delete a book -->  /api/v1/book/delete/:id", () =>{
        return await BookRepository.save(bookData)
     });
     it("Deletes an specific book", async () =>{
-        const bookFound = await BookRepository.getSpecific({where: {unique_code: 541234 }});
+        const bookFound = await BookRepository.getSpecific({where: {uniqueCode: 541234 }});
         const bookId = bookFound.id;
         return await request(app).delete(`/api/v1/book/delete/${bookId}`)
         .expect("Content-Type", /json/)
@@ -83,3 +83,19 @@ describe("Delete a book -->  /api/v1/book/delete/:id", () =>{
         .expect({ message: 'Livro não encontrado'})
     });
 })
+
+describe("Gets a book --> /api/v1/book/:id", () => {
+    const bookFound = BookRepository.getSpecificWithId(1)
+    it("Updates an specific book", async () => {
+        await bookFound;
+        return await request(app).get('/api/v1/book/1')
+            .expect("Content-Type", /json/)
+            .expect(200)
+    });
+    it("Book not found", async () => {
+        return await request(app).get('/api/v1/book/9990')
+        .expect("Content-Type", /json/)
+        .expect(404)
+        .expect({ message: 'Livro não encontrado'})
+    });
+});

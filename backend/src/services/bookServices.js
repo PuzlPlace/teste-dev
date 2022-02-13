@@ -4,7 +4,7 @@ const getAllBooks = async () => await BookRepository.getAll();
   
 const addBook = async (data) => await BookRepository.save(data);
 
-const updatesBook = async (data) =>  await BookRepository.put(data);
+const updatesBook = async (data, id) =>  await BookRepository.put(data, id);
 
 const destroyBook = async (id) => await BookRepository.remove(id);
 
