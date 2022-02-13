@@ -2,8 +2,8 @@ import { http } from './config';
 
 export default {
 
-    list:()=>{
-        return http.get('/books')
+    list:(pagination)=>{
+        return http.get('/books?page='+ pagination)
     },
     saveBook:(book)=>{
         return http.post('/book/create', book)

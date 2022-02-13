@@ -33,6 +33,10 @@
         </tr>
       </tbody>
     </table>
+    <ul class="pagination justify-content-center">
+      <li v-for="(page, index) of pages" :key="index" class="page-item">
+        <a class="page-link" :href="'/?page=' + page">{{page}}</a></li>
+    </ul>
   </div>
 </template>
 <script>
@@ -42,6 +46,9 @@ export default {
     return {
       books: [],
       error: "",
+      pageParam: "",
+      pages: "",
+      size: ""
     };
   },
   methods: {
@@ -49,20 +56,22 @@ export default {
       Books.removeBook(id)
         .then((response) => {
           alert(response.data.message);
-           this.listBooks();
+          this.listBooks();
         })
         .catch((error) => {
           this.error = error.response.data.message;
         });
     },
-    listBooks() {
-      Books.list().then((response) => {
-        this.books = response.data;
+    listBooks(pagination) {
+      Books.list(pagination).then((response) => {
+        this.books = response.data.books;
+        this.pages = response.data.countPages
       });
     },
   },
   mounted() {
-    this.listBooks();
+    this.pageParam = this.$route.query.page
+    this.listBooks(this.pageParam);
   },
 };
 </script>

@@ -18,8 +18,24 @@ const createBook = async (req, res) => {
 
 const readBook = async (req, res) => {
     try {
-        const books = await BookServices.getAllBooks();
-        res.status(200).json(books);
+        let {page,size} = req.query
+        if(!page){
+            page = 1;
+        }
+        if(!size){
+            size = 5;
+        }
+        const limit = parseInt(size);
+        const skip = (page -1) * size;
+        const pages = await BookServices.booksCount();
+        const countPages =  Math.ceil((pages.count)/5);
+        const books = await BookServices.getAllBooks(limit,skip);
+        res.status(200).json({
+            page,
+            size,
+            countPages,
+            books
+        });
     } catch (error) {
         res.status(500).json({ message: 'Erro: ' + error })
     }

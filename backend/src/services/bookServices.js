@@ -1,6 +1,6 @@
 const BookRepository = require("../repository/booksRepository");
  
-const getAllBooks = async () => await BookRepository.getAll();
+const getAllBooks = async (limit,skip) => await BookRepository.getAll(limit,skip);
   
 const addBook = async (data) => await BookRepository.save(data);
 
@@ -10,12 +10,14 @@ const destroyBook = async (id) => await BookRepository.remove(id);
 
 const specificBook = async (id) => await BookRepository.getSpecificWithId(id);   
 
+const booksCount = async () => await BookRepository.getAllAndCount();
 
 module.exports ={
     getAllBooks,
     addBook,
     updatesBook,
     destroyBook,
-    specificBook
+    specificBook,
+    booksCount
 
 }
