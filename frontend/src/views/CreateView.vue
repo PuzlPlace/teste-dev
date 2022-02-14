@@ -22,16 +22,18 @@
           v-model="book.author"
         />
       </div>
-      <div class="form-group">
-        <label for="category">Category</label>
-        <input
-          type="text"
-          class="form-control"
-          id="category"
-          placeholder="Enter "
-          v-model="book.category"
-        />
-      </div>
+      Category
+      <select
+        class="form-select form-select-sm"
+        aria-label=".form-select-sm"
+        v-model="book.category"
+      >
+        <option value="Select Category">Select Category</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Horror">Horror</option>
+        <option value="Literary Fiction">Literary Fiction</option>
+      </select>
       <div class="form-group">
         <label for="uniqueCode">Unique Code</label>
         <input
@@ -42,18 +44,31 @@
           v-model="book.uniqueCode"
         />
       </div>
-      <div class="form-group">
-        <label for="type">Type</label>
+      Type:
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="type"
-          placeholder="Enter type"
+          class="form-check-input"
+          type="radio"
+          name="digital"
+          id="digital"
+          value="digital"
           v-model="book.type"
         />
+        <label class="form-check-label" for="digital"> Digital </label>
       </div>
-      <div class="form-group">
-        <label for="size">Size</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="physical"
+          id="physical"
+          value="physical"
+          v-model="book.type"
+        />
+        <label class="form-check-label" for="physical"> Physical </label>
+      </div>
+      <div v-if="book.type == 'digital'" class="form-group">
+        <label for="size">Size(MB)</label>
         <input
           type="text"
           class="form-control"
@@ -62,7 +77,7 @@
           v-model="book.size"
         />
       </div>
-      <div class="form-group">
+      <div v-else class="form-group">
         <label for="weight">Weight</label>
         <input
           type="number"
@@ -84,13 +99,15 @@ export default {
       book: {
         name: "",
         author: "",
-        category: "",
+        category: "Select Category",
         uniqueCode: "",
-        type: "",
-        size: "",
-        weight: "",
+        type: "digital",
+        size: null,
+        weight: null,
       },
       error: "",
+      digital: true,
+      physical: false,
     };
   },
   methods: {

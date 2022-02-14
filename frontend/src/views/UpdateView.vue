@@ -22,37 +22,52 @@
           v-model="book.author"
         />
       </div>
-      <div class="form-group">
-        <label for="category">Category</label>
-        <input
-          type="text"
-          class="form-control"
-          id="category"
-          placeholder="Enter "
-          v-model="book.category"
-        />
-      </div>
+      Category
+      <select
+        class="form-select form-select-sm"
+        aria-label=".form-select-sm"
+        v-model="book.category"
+      >
+        <option value="Select Category">Select Category</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Horror">Horror</option>
+        <option value="Literary Fiction">Literary Fiction</option>
+      </select>
       <div class="form-group">
         <label for="uniqueCode">Unique Code</label>
         <input
           type="number"
           class="form-control"
           id="uniqueCode"
-          placeholder="Enter uniqueCode"
+          placeholder="Enter Unique Code"
           v-model="book.uniqueCode"
         />
       </div>
-      <div class="form-group">
-        <label for="type">Type</label>
+      Type:
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="type"
-          placeholder="Enter type"
+          class="form-check-input"
+          type="radio"
+          name="digital"
+          id="digital"
+          value="digital"
           v-model="book.type"
         />
+        <label class="form-check-label" for="digital"> Digital </label>
       </div>
-      <div class="form-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="physical"
+          id="physical"
+          value="physical"
+          v-model="book.type"
+        />
+        <label class="form-check-label" for="physical"> Physical </label>
+      </div>
+      <div v-if="book.type == 'digital'" class="form-group">
         <label for="size">Size</label>
         <input
           type="text"
@@ -62,7 +77,7 @@
           v-model="book.size"
         />
       </div>
-      <div class="form-group">
+      <div v-else class="form-group">
         <label for="weight">Weight</label>
         <input
           type="number"
@@ -72,7 +87,7 @@
           v-model="book.weight"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Create</button>
     </form>
   </div>
 </template>
@@ -96,14 +111,14 @@ export default {
     };
   },
   created() {
-    this.id =this.$route.params.id;
+    this.id = this.$route.params.id;
     this.oneBook(this.id);
   },
   methods: {
     update(id) {
       Books.updateBook(this.book, id)
         .then((response) => {
-          console.log(response)
+          console.log(response);
           alert(response.data.message);
           this.$router.push("/");
         })
