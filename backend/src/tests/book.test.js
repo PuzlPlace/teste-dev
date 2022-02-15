@@ -5,13 +5,14 @@ const BookRepository = require("../repository/booksRepository");
 
 describe("Post Create a Book --> /api/v1/book/create", () => {
     it('Create an book', async () => {
+      const random =  Math.floor(Math.random() * (1000 - 10)) + 10;
         return await request(app).post('/api/v1/book/create').send({
             name: 'name',
             author: 'author',
-            category: 'category',
-            uniqueCode: 4123,
+            category: 'Thriller',
+            uniqueCode: random,
             type: 'digital',
-            size: '500mb',
+            size: 500,
             weight: 30,
         }).expect("Content-Type", /json/)
             .expect(201)
@@ -25,7 +26,7 @@ describe("Get all books --> /api/v1/books", () => {
     it("Gets an array of books", async () => {
         await books;
             return await request(app)
-            .get("/api/v1/books")
+            .get("/api/v1/books/paginated")
             .expect("Content-Type", /json/)
             .expect(200)
     });
@@ -37,11 +38,11 @@ describe("Update a book --> /api/v1/book/update/:id", () => {
         return await request(app).put('/api/v1/book/update/1').send({
             name: 'name',
             author: 'author',
-            category: 'category',
+            category: 'Thriller',
             uniqueCode: 4124,
             type: 'digital',
-            size: '500mb',
-            weight: 15,
+            size: 500,
+            weight: null,
         })
             .expect("Content-Type", /json/)
             .expect(200)
@@ -59,10 +60,10 @@ describe("Delete a book -->  /api/v1/book/delete/:id", () =>{
      const bookData = {
             name: 'name',
             author: 'author',
-            category: 'category',
+            category: 'Thriller',
             uniqueCode: 541234,
             type: 'digital',
-            size: '500mb',
+            size: 500,
             weight: null,
         }
        return await BookRepository.save(bookData)

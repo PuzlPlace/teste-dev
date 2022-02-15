@@ -1,10 +1,18 @@
 const Book = require('../app/models/Book');
 
-const getAll = async (limit, skip) => await Book.findAll({
-    limit: limit, offset: skip, order: [
-        ['id', 'ASC']]
-})
-const getAllAndCount = async () =>Book.findAndCountAll();
+const getAll = async (limit, skip) =>{
+    if(limit){
+     return await Book.findAll({
+            limit: limit, offset: skip, order: [
+                ['id', 'ASC']]
+        })
+    }else{
+        return await Book.findAll()
+    }
+
+}
+const getAllAndCount = async () => await Book.findAndCountAll();
+
 const getSpecificWithId = async (id) => await Book.findByPk(id);
 
 const getSpecific = async (where) => await Book.findOne(where);

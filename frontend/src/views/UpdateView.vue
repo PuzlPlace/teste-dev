@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <b>{{ this.error }}</b>
     <form @submit.prevent="update(id)">
       <div class="form-group">
@@ -53,6 +53,7 @@
           id="digital"
           value="digital"
           v-model="book.type"
+          @click="clearsPhysicalType"
         />
         <label class="form-check-label" for="digital"> Digital </label>
       </div>
@@ -64,6 +65,7 @@
           id="physical"
           value="physical"
           v-model="book.type"
+          @click="clearsDigitalType"
         />
         <label class="form-check-label" for="physical"> Physical </label>
       </div>
@@ -78,7 +80,7 @@
         />
       </div>
       <div v-else class="form-group">
-        <label for="weight">Weight</label>
+        <label for="weight">Weight(g)</label>
         <input
           type="number"
           class="form-control"
@@ -87,7 +89,7 @@
           v-model="book.weight"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary">Edit</button>
     </form>
   </div>
 </template>
@@ -112,13 +114,14 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+    this.bookSize = this.book.size;
     this.oneBook(this.id);
   },
+
   methods: {
     update(id) {
       Books.updateBook(this.book, id)
         .then((response) => {
-          console.log(response);
           alert(response.data.message);
           this.$router.push("/");
         })
@@ -135,6 +138,30 @@ export default {
           this.error = error.response.data.message;
         });
     },
+    clearsDigitalType() {
+      this.book.size = null;
+    },
+     clearsPhysicalType() {
+      this.book.weight = null;
+    },
   },
 };
 </script>
+<style>
+.form-group,
+.form-select {
+  width: 50%;
+  margin-bottom: 15px;
+}
+.form-check {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.main {
+  padding-left: 250px;
+}
+.btn{
+  margin-bottom: 15px;;
+}
+
+</style>

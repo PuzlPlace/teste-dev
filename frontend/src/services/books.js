@@ -3,7 +3,7 @@ import { http } from './config';
 export default {
 
     list:(pagination)=>{
-        return http.get('/books?page='+ pagination)
+        return http.get('/books/paginated?page='+ pagination)
     },
     saveBook:(book)=>{
         return http.post('/book/create', book)
@@ -16,6 +16,9 @@ export default {
     },
     removeBook:(id)=>{
         return http.delete(`/book/delete/${id}`, )
+    },
+    listAll:()=>{
+        return http.get('/books/search');
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <b>{{ this.error }}</b>
     <form @submit.prevent="save">
       <div class="form-group">
@@ -78,7 +78,7 @@
         />
       </div>
       <div v-else class="form-group">
-        <label for="weight">Weight</label>
+        <label for="weight">Weight(g)</label>
         <input
           type="number"
           class="form-control"
@@ -87,7 +87,7 @@
           v-model="book.weight"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-success">Create</button>
     </form>
   </div>
 </template>
@@ -124,3 +124,21 @@ export default {
   },
 };
 </script>
+<style>
+.form-group,
+.form-select {
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.form-check {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.main {
+  padding-left: 250px;
+}
+.btn{
+  margin-bottom: 15px;;
+}
+</style>

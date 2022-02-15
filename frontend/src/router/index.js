@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreateView from '../views/CreateView.vue'
 import UpdateView from '../views/UpdateView.vue'
+import DashbordView from '../views/DashboardView.vue'
 
 
 
@@ -26,6 +27,11 @@ const router = new VueRouter({
       path: '/update/:id',
       name: 'update',
       component: UpdateView
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashbordView
     },
   ]
 })

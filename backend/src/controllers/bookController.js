@@ -16,20 +16,20 @@ const createBook = async (req, res) => {
     }
 }
 
-const readBook = async (req, res) => {
+const readBooksPaginated = async (req, res) => {
     try {
-        let {page,size} = req.query
-        if(!page){
+        let { page, size } = req.query
+        if (!page) {
             page = 1;
         }
-        if(!size){
+        if (!size) {
             size = 5;
         }
         const limit = parseInt(size);
-        const skip = (page -1) * size;
+        const skip = (page - 1) * size;
         const pages = await BookServices.booksCount();
-        const countPages =  Math.ceil((pages.count)/5);
-        const books = await BookServices.getAllBooks(limit,skip);
+        const countPages = Math.ceil((pages.count) / size);
+        const books = await BookServices.getAllBooks(limit, skip);
         res.status(200).json({
             page,
             size,
@@ -48,7 +48,6 @@ const updateBook = async (req, res) => {
     try {
         if (bookFound) {
             const updatedBook = await BookServices.updatesBook(req.body, bookId)
-            console.log(updateBook)
             res.status(200).json({ updatedBook, message: 'Livro Atualizado' });
         } else {
             res.status(404).json({ message: 'Livro não encontrado' });
@@ -87,10 +86,22 @@ const specificBook = async (req, res) => {
         res.status(500).json({ message: 'Erro: ' + error })
     }
 }
+
+const readBooks = async (req, res) => {
+    try {
+        const searched = await BookServices.getAllBooks();
+        res.status(200).json({
+            searched,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro: ' + error })
+    }
+}
 module.exports = {
     createBook,
-    readBook,
+    readBooksPaginated,
     updateBook,
     deleteBook,
-    specificBook
+    specificBook,
+    readBooks,
 }
