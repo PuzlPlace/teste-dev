@@ -14,25 +14,25 @@ export default {
           },
           {
             label: "First Quarter",
-            data: [2],
+            data: [0],
             borderColor: "white",
             backgroundColor: "red",
           },
           {
             label: "Second Quarter",
-            data: [2],
+            data: [0],
             borderColor: "white",
             backgroundColor: "blue",
           },
           {
             label: "Third Quarter",
-            data: [2],
+            data: [],
             borderColor: "white",
             backgroundColor: "green",
           },
           {
             label: "Fourth Quarter",
-            data: [3],
+            data: [0],
             borderColor: "white",
             backgroundColor: "Yellow",
           },
@@ -43,7 +43,7 @@ export default {
   },
   extends: Bar,
   methods: {
-    searchByDate() {
+    async searchByDate() {
       let jan = 0;
       let feb = 0;
       let mar = 0;
@@ -57,52 +57,55 @@ export default {
       let nov = 0;
       let dec = 0;
 
-      Books.listAll().then((response) => {
-        const booksFiltered = response.data.searched;
+     const response = await Books.listAll()
+     const booksFiltered = response.data.searched;
         jan = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 0
-        );
+        ).length;
         feb = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 1
-        );
+        ).length;
         mar = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 2
-        );
+        ).length;
         apr = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 3
-        );
+        ).length;
         may = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 4
-        );
+        ).length;
         jun = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 5
-        );
+        ).length;
         jul = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 6
-        );
+        ).length;
         aug = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 7
-        );
+        ).length;
         sep = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 8
-        );
+        ).length;
         oct = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 9
-        );
+        ).length;
         nov = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 10
-        );
+        ).length;
         dec = booksFiltered.filter(
           (book) => new Date(book.createdAt).getMonth() === 11
-        );
-        // this.chartData.datasets[1].data[0] = feb;
-      });
+        ).length;
+        this.chartData.datasets[1].data[0] = jan + feb + mar;
+        this.chartData.datasets[2].data[0] = apr + may + jun;
+        this.chartData.datasets[3].data[0] = jul + aug + sep;
+        this.chartData.datasets[4].data[0] = oct + nov + dec;
+
+
     },
   },
-  mounted() {
+ async mounted() {
+   await this.searchByDate();
     this.renderChart(this.chartData);
-    this.searchByDate();
-    console.log(this.chartData.datasets[1].data[0]);
   },
 };
 </script>

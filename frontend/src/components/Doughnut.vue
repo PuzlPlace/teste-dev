@@ -9,55 +9,47 @@ export default {
         datasets: [
           {
             backgroundColor: ["red", "yellow", "blue", "green"],
-            data: [1,1,1,1],
+            data: [1, 1, 1, 1],
           },
         ],
 
         labels: ["Thriller", "Science Fiction", "Horror", "Literary Fiction"],
       },
-      trhiller: "",
-      countTrhiller: "",
-      scienceFiction: "",
-      horror: "",
-      literaryFiction: "",
-      searched: "",
     };
   },
   extends: Doughnut,
   methods: {
-    searchCategory() {
+    async searchCategory() {
       let countTrhiller = 0;
       let countHorror = 0;
       let countLiterary = 0;
       let countScience = 0;
-      Books.listAll().then((response) => {
-        const booksFiltered = response.data.searched;
-        countTrhiller = booksFiltered.filter(
+      const response = await Books.listAll()
+      const responseCategory = response.data.searched;
+        countTrhiller = responseCategory.filter(
           (book) => book.category == "Thriller"
         ).length;
-        countHorror = booksFiltered.filter(
+        countHorror = responseCategory.filter(
           (book) => book.category == "Horror"
         ).length;
-        countLiterary = booksFiltered.filter(
+        countLiterary = responseCategory.filter(
           (book) => book.category == "Literary Fiction"
         ).length;
-        countScience = booksFiltered.filter(
+        countScience = responseCategory.filter(
           (book) => book.category == "Science Fiction"
         ).length;
-
-        return this.chartData.datasets[0].data = [
+        
+        return (this.chartData.datasets[0].data = [
           countTrhiller,
           countScience,
           countHorror,
           countLiterary,
-        ];
-      });
+        ]);
     },
   },
-  mounted() {
-    this.searchCategory();
+ async mounted() {
+   await this.searchCategory();
     this.renderChart(this.chartData);
-
   },
 };
 </script>

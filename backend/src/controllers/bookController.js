@@ -6,7 +6,7 @@ const createBook = async (req, res) => {
     try {
         await bookSchema.validateAsync(req.body);
         await BookServices.addBook(req.body)
-        res.status(201).json({ message: 'Livro cadastrado com sucesso' });
+        res.status(201).json({ message: 'Book Created' });
     } catch (error) {
         if (error.isJoi === true) {
             res.status(422).json({ message: 'Erro: ' + error })
@@ -48,9 +48,9 @@ const updateBook = async (req, res) => {
     try {
         if (bookFound) {
             const updatedBook = await BookServices.updatesBook(req.body, bookId)
-            res.status(200).json({ updatedBook, message: 'Livro Atualizado' });
+            res.status(200).json({ updatedBook, message: 'Updated Book' });
         } else {
-            res.status(404).json({ message: 'Livro não encontrado' });
+            res.status(404).json({ message: 'Book not Found' });
         }
     } catch (error) {
         res.status(500).json({ message: 'Erro: ' + error })
@@ -62,10 +62,10 @@ const deleteBook = async (req, res) => {
     try {
         const bookFound = await BookServices.specificBook(bookId);
         if (!bookFound) {
-            res.status(404).json({ message: 'Livro não encontrado' });
+            res.status(404).json({ message: 'Book not Found' });
         } else {
             await BookServices.destroyBook({ where: { id: bookId } })
-            res.status(200).json({ message: 'Livro Deletado' });
+            res.status(200).json({ message: 'Book Deleted' });
         }
     } catch (error) {
         res.status(500).json({ message: 'Erro: ' + error })
@@ -78,7 +78,7 @@ const specificBook = async (req, res) => {
     try {
         const bookFound = await BookServices.specificBook(bookId);
         if (!bookFound) {
-            res.status(404).json({ message: 'Livro não encontrado' });
+            res.status(404).json({ message: 'Book not Found' });
         } else {
             res.status(200).json(bookFound);
         }

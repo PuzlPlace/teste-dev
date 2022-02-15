@@ -46,13 +46,13 @@ describe("Update a book --> /api/v1/book/update/:id", () => {
         })
             .expect("Content-Type", /json/)
             .expect(200)
-            .expect({ message: 'Livro Atualizado' })
+            .expect({ message: 'Updated Book' })
     });
     it("Book not found", async () => {
         return await request(app).put('/api/v1/book/update/9990')
         .expect("Content-Type", /json/)
         .expect(404)
-        .expect({ message: 'Livro não encontrado'})
+        .expect({ message: 'Book not Found'})
     });
 });
 describe("Delete a book -->  /api/v1/book/delete/:id", () =>{
@@ -74,14 +74,14 @@ describe("Delete a book -->  /api/v1/book/delete/:id", () =>{
         return await request(app).delete(`/api/v1/book/delete/${bookId}`)
         .expect("Content-Type", /json/)
         .expect(200)
-        .expect({ message: 'Livro Deletado' })
+        .expect({ message: 'Book Deleted' })
 
     })
     it("Book not found", async () => {
         return await request(app).delete('/api/v1/book/delete/999000')
         .expect("Content-Type", /json/)
         .expect(404)
-        .expect({ message: 'Livro não encontrado'})
+        .expect({ message: 'Book not Found'})
     });
 })
 
@@ -97,6 +97,6 @@ describe("Gets a book --> /api/v1/book/:id", () => {
         return await request(app).get('/api/v1/book/9990')
         .expect("Content-Type", /json/)
         .expect(404)
-        .expect({ message: 'Livro não encontrado'})
+        .expect({ message: 'Book not Found'})
     });
 });
