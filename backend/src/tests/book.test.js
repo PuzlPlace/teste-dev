@@ -4,8 +4,8 @@ const BookRepository = require("../repository/booksRepository");
 
 
 describe("Post Create a Book --> /api/v1/book/create", () => {
+    const random =  Math.floor(Math.random() * (1000 - 10)) + 10;
     it('Create an book', async () => {
-      const random =  Math.floor(Math.random() * (1000 - 10)) + 10;
         return await request(app).post('/api/v1/book/create').send({
             name: 'name',
             author: 'author',
@@ -18,7 +18,7 @@ describe("Post Create a Book --> /api/v1/book/create", () => {
             .expect(201)
     });
     afterAll(async () => {
-        await BookRepository.remove({ where: { uniqueCode: 41234 } });
+        await BookRepository.remove({ where: { uniqueCode: random } });
     });
 });
 describe("Get all books --> /api/v1/books", () => {

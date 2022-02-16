@@ -1,68 +1,51 @@
-# Teste para candidatos à vaga de Desenvolvedor Full Stack.
+# Decrição
 
-Olá, caro desenvolvedor, nesse teste analisaremos seu conhecimento geral e velocidade de desenvolvimento. Abaixo explicaremos tudo o que será necessário.
+Olá, o backend dessa aplicação está feito em `Node` e o front em `Vue`. O banco de dados utilizado foi o `Postgres`.
+Com essa aplicação o usuário consegue adicionar, editar, vizualizar e deletar livros, assim como vizualizar dois gráficos
+na tela dashboard, referente as informações desses livros.
 
 # Instruções
-- Você deve desenvolver uma API, utilizando `Laravel`, `Lumen` ou `Node`.
-A escolha das bibliotecas, banco de dados, arquitetura, etc, fica a seu critério.
+- Após baixar os arquivos, utilize os comandos:
 
-- O código precisa rodar em múltiplas plataformas, utilizando a Docker.
-Altere o arquivo README explicando o que é preciso para rodar sua aplicação.
+git fetch; git checkout AdryannMillosSantosDeFreitas
 
-# O teste
+- Na raiz do projeto terão duas pastas, backend e frontend, com os comandos:
 
-**Back-End**
+cd backend; npm install; 
 
-A primeira etapa será o desenvolvimento do backend.
+- Você entrará na pasta do backend e baixará todas as dependências, nessa mesma pasta você encontrará um arquivo chamado 
+.env.exemple, copie-o e renomeie a copia para apenas .env, edite-a de acordo com o seu banco de dados que irá utilizar na aplicação e escolha uma porta para o servidor, por exemplo a 8000.
 
-**Descrição**:
+- Com o comando:
 
-Você deverá desenvolver uma 'mini api' para que seja possível realizar operações CRUD de uma estante de livros.
-Será necessário gerar um relatório a partir destas informações.
+npm start
 
-# Condições:
-Você poderá utilizar qualquer tecnologia de banco relacional ou apenas MongoDB como banco não relacional.
-> - O sistema deverá ser separado por módulos, tendo eles, seus respectivos controllers, rotas, models, camada de serviço e repositório.
-> - O sistema deverá retornar os livros de forma paginada.
+- O servidor deve iniciar na porta determinada no seu .env .
 
-**Cada livro deverá possuir** :
-- ID
-- Nome
-- Autor
-- Categoria
-- Código (único)
-- Tipo (arquivo digital ou físico)
-- Tamanho (Peso do livro físico ou tamanho do arquivo)
-- Diferenciais : Testes unitários.
+- Abra um novo terminal, sem fechar o do backend e utilize os comando :
 
-# Front-End
-**Para a segunda etapa do teste, você deverá desenvolver uma SPA (Single Page Application) com `Vue.js 2` e nela deve ser possível:**
-> - Ver a lista de livros cadastrados
-> - Criar um novo livro
-> - Editar um livro existente
-> - Apagar um livro existente
-> - Filtragem por categoria, tipo de arquivo e nome.
-> - Elaboração de um relatório/dashboard de livros cadastrados, sendo possível filtrar por categoria e por período.
+cd frontend; npm install; npm run dev;
 
-**Condições**:
-> - A página deve ser responsiva.
-> - A página deve funcionar 100% via AJAX, sem outros carregamentos de páginas.
-> - Os dados das requisições deverão ser gerenciados pelo VUEX.
-> - Ao criar/editar um livro, o campo "categoria" deverá ser um SELECT.
-> - A definição de peso ou tamanho do arquivo deverá ser realizada pela função `watch`, verificando o tipo do arquivo: *arquivo digital ou físico*
+- assim, entrando na pasta do frontend, baixando as dependencias e iniciando-o no link mostrado no terminal. Abra o seu navegador e acesse o link.
 
-**Dicas**:
-> - Você pode usar frameworks, tanto para o front-end (Vuejs) e tanto para o back-end.
-> - Você pode usar ferramentas de automação (Grunt, Gulp), mas deverá informar o uso completo para funcionamento do teste.
-> - Será considerado ponto positivo no teste a utilização de orientação a objetos, design patterns e rotinas para testes.
+**Frontend**
 
-**Entrega**
+A pagina inicial acessada pelo navegador é a Home, onde você pode vizualizar todos os livros criados e suas informações, de forma paginada, podendo utilizar os filtros em cima da tabela de livros para filtrar de acordo com sua preferencia essas informações. 
 
-Para iniciar o teste, faça um fork deste repositório, crie uma branch com o seu nome completo e depois envie-nos o pull request. Se você apenas clonar o repositório não vai conseguir fazer push e depois vai ser mais complicado fazer o pull request.
-Nossa análise
-Organização do código, legibilidade e comentários, uso de padrões.
-Histórico de commits.
+Na navbar, tem-se o botão de adicionar livro, que redireciona o usuário para uma tela de cadastro de livro, também tem-se um botão para
+a tela dashboard onde o usuário pode ver em forma de gráfico, informações sobre os livros cadastrados.
 
-**Dúvidas?**
-Quaisquer dúvidas que você venha a ter, abra você mesmo uma nova issue, ou mande um e-mail.
-Boa sorte!
+Na Home o usuário ainda tem acesso a mais dois botões, um de editar, que redireciona para uma página em que se pode editar as informações do 
+livro selecionado, e um botão de deletar, onde apaga-se as informações do livro selecionado.
+
+**Backend**:
+
+Na pasta src dentro de backend, tem-se a pasta routes, onde estão definidas todas as rotas da api, seus métodos http e o controller responsável por essas rotas, que encontra-se na pasta controllers. 
+Dentro do controller, temos uma contante para cada rota, validações(que está dentro da pasta validation), paginação, services responsável e o que cada roda tem que retornar em caso de sucesso ou erro. 
+Dentro de services temos todos os serviços, lógica de negócio e a interligação com o repository(pasta repository) que é o responsável pela interação com o banco de dados.
+
+**Testes**
+Na pasta tests, dentro do arquivo book.test.js temos os testes unitários, lembre-se de que para obter sucesso noprimeiro teste de cada uma dessas rotas, /api/v1/book/:id e  /api/v1/book/update/:id deve-se ter criado um livro com o mesmo id que vai ser testado (pode ser utilizando o frontend ou usando uma ferramenta como o postman). Para iniciar os testes, estando com o terminal dentro da pasta backend, basta usar o comando:
+
+npm run test
+
