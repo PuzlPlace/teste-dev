@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main-div">
     <b>{{ this.error }}</b>
     <form @submit.prevent="update(id)">
       <div class="form-group">
@@ -162,6 +162,9 @@ export default {
 }
 .btn{
   margin-bottom: 15px;;
+}
+.main-div{
+  padding-left: 20px;
 }
 
 </style>

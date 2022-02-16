@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main-div">
     <b>{{ this.error }}</b>
     <form @submit.prevent="save">
       <div class="form-group">
@@ -127,7 +127,6 @@ export default {
 <style>
 .form-group,
 .form-select {
-  width: 50%;
   margin-bottom: 15px;
 }
 
@@ -135,10 +134,10 @@ export default {
   display: inline-block;
   margin-bottom: 15px;
 }
-.main {
-  padding-left: 250px;
-}
 .btn{
   margin-bottom: 15px;;
+}
+.main-div{
+  padding-left: 20px;
 }
 </style>
