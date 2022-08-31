@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
-      - ././api/:/var/www
+      - ./api/:/var/www
     depends_on:
       - redis
       - queue
@@ -28,8 +28,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ././api/:/var/www
-      - ././api/docker/nginx/:/etc/nginx/conf.d/
+      - ./api/:/var/www
+      - ./api/docker/nginx/:/etc/nginx/conf.d/
     networks:
       - appnetwork
 
@@ -71,7 +71,7 @@ services:
     restart: unless-stopped
     command: "php artisan queue:work"
     volumes:
-      - ././api/:/var/www
+      - ./api/:/var/www
     depends_on:
       - redis
     networks:
