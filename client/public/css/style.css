@@ -1,0 +1,59 @@
+.label-info-nao-encontrada{
+    text-align:center;
+    color:grey;
+    font-style:italic;
+}
+
+.label-sem-permissao{
+    text-align:center;
+    font-size: 15pt;
+    color:red;
+    font-style:italic;
+}
+
+.label-carregamento {
+    text-align:center;
+    font-style:italic;
+    color: grey;
+    opacity: 0;
+    animation: anima 1s ease infinite;
+}
+@keyframes anima {
+    to {
+        opacity: 1;
+    }
+}
+
+.paginacao li {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
+}
+
+.paginacao li a {
+    color: #444 !important;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.paginacao li.active {
+    display: inline-block !important;
+    border-radius: 2px !important;
+    text-align: center !important;
+    vertical-align: top !important;
+    height: 30px !important;
+}
+
+
+.paginacao li.active a {
+    color: #fff !important;
+}
+
+.paginacao li.disabled a {
+    cursor: default !important;
+    color: #999 !important;
+}

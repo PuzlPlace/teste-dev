@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 
-trait HasUuidGenerator
+trait HasCodeGenerator
 {
-    protected static function bootHasUuidGenerator(): void
+    protected static function bootHasCodeGenerator(): void
     {
         static::creating(function($query) {
             $query->code = (string)Str::uuid();
