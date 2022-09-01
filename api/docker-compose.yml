@@ -1,41 +1,41 @@
 version: "3.7"
 services:
   # image project
-  app_api:
-    container_name: app_api_app_laravel
+  teste_dev_app:
+    container_name: teste_dev_app_laravel
     build:
       args:
-        user: api_app
+        user: gabriel
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: laravel-app
+    image: teste-dev-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
-      - ././api/:/var/www
+      - ./:/var/www
     depends_on:
       - redis
       - queue
     networks:
-      - appnetwork
+      - teste_dev_network
 
   # nginx
   nginx:
-    container_name: app_nginx
+    container_name: teste_dev_nginx
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8001:80"
     volumes:
-      - ././api/:/var/www
-      - ././api/docker/nginx/:/etc/nginx/conf.d/
+      - ./:/var/www
+      - ./docker/nginx/:/etc/nginx/conf.d/
     networks:
-      - appnetwork
+      - teste_dev_network
 
   # db mysql
   mysql:
-    container_name: app_mysql
+    container_name: teste_dev_mysql
     image: mysql:8.0.28
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
@@ -44,46 +44,46 @@ services:
     volumes:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
-      - appnetwork
+      - teste_dev_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     links:
       - mysql
     ports:
-      - "8080:80"
+      - "8002:80"
     environment:
       - PMA_ARBITRARY=1
     networks:
-      - appnetwork
+      - teste_dev_network
 
   # queue
   queue:
     build:
       args:
-        user: api_app
+        user: gabriel
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-    container_name: app_queue
+    container_name: teste_dev_queue
     restart: unless-stopped
     command: "php artisan queue:work"
     volumes:
-      - ././api/:/var/www
+      - ./:/var/www
     depends_on:
       - redis
     networks:
-      - appnetwork
+      - teste_dev_network
 
   # redis
   redis:
-    container_name: app_redis
+    container_name: teste_dev_redis
     image: redis:latest
     networks:
-      - appnetwork
+      - teste_dev_network
 
 networks:
-  appnetwork:
+  teste_dev_network:
     driver: bridge

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/teste', function(){
+    return 'teste';
+});
+
 Route::post('/login', [\App\Http\Controllers\Auth\JWTAuthController::class, 'login']);
 
 Route::middleware('jwt.auth')->group(function () {
