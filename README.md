@@ -1,14 +1,9 @@
 # Teste-dev
 
-## Definição
-
-Sistema de gerenciamento de usuários e lista de tarefas criado com o intuito de
-estudar as tecnologias Laravel e VueJS.
-
 ## Tecnologias usadas
 
 - [PHP 8](https://www.php.net/downloads): https://www.php.net/downloads
-- [Laravel 8](https://laravel.com/docs/8.x): https://laravel.com/docs/8.x
+- [Laravel 9](https://laravel.com/docs/8.x): https://laravel.com/docs/8.x
 - [NodeJS 16.14.2](https://nodejs.org/download/release/v16.14.2/): https://nodejs.org/download/release/v16.14.2/
 
 ## Pacotes de terceiros utilizados
