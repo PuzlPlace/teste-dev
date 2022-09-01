@@ -6,7 +6,7 @@
             <ErrorAlerts class="mb-2" ref="errorAlerts"></ErrorAlerts>
 
             <form @submit.prevent.stop="signIn">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 fw-normal">Login</h1>
 
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="form.email">

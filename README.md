@@ -1,4 +1,4 @@
-# iTasks - Sistema de Lista de Tarefas
+# Teste-dev
 
 ## Definição
 
@@ -115,12 +115,13 @@ php artisan migrate
 php artisan user:new
 ```
 
-###### 2.9.1 Saia do terminal (bash) do laravel
+###### 2.9.1 Saia do terminal (bash) do container laravel
 
 ```bash
 exit
 ```
 
+==============================================================================
 
 #### 3. Client
 ###### 3.1. Entre na pasta do Client
@@ -134,19 +135,13 @@ cd client
 cp .env.example .env
 ```
 
-* 3.2.1 Insira a URL da API na variável <b>VUE_APP_URL_API</b> (ex: http://127.0.0.1:8000/api).
+* 3.2.1 Insira a URL da API na variável <b>VUE_APP_URL_API</b> (ex: http://localhost:8001/api).
 * Sem essa variável preenchida ocorrerá erro nas chamadas AJAX.
 
-###### 3.3. Instale as dependências do NPM
+###### 3.3. Suba o container do client (vuejs)
 
 ```bash
-npm install
-```
-
-###### 3.4. Suba o serviço de client
-
-```bash
-npm run serve
+sudo docker-compose up --build -d
 ```
 
 
