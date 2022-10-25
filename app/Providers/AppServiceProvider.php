@@ -13,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        \Laravel\Sanctum\Sanctum::ignoreMigrations();
+
+        \Carbon\Carbon::setLocale($this->app->getLocale());
+        date_default_timezone_set('America/Cuiaba');
+        setlocale(LC_TIME, 'ptb');
+        setlocale(LC_ALL, 'pt_BR.utf-8', 'ptb', 'pt_BR', 'portuguese-brazil', 'portuguese-brazilian', 'bra', 'brazil', 'br');
+        setlocale(LC_TIME, 'pt_BR.utf-8', 'ptb', 'pt_BR', 'portuguese-brazil', 'portuguese-brazilian', 'bra', 'brazil', 'br');
     }
 
     /**
