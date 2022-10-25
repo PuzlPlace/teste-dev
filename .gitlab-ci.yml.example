@@ -1,0 +1,24 @@
+image: edbizarro/gitlab-ci-pipeline-php:7.4
+
+stages:
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+        - vendor/
+        - node_modules/
+        - bootstrap/
+
+
+deploy:
+  stage: deploy
+  script:
+    # import ssh private key
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - ssh $SSH_USER@$SSH_HOST "$DEPLOY_PATH && git checkout master && git pull origin master"
+  only:
+    # - master // undocomment after install in project 

@@ -1,0 +1,59 @@
+version: "2.0"
+services:
+  application:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - UID=${UID}
+        - GID=${GID}
+        - SSH_PASSWORD=123456
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/www/html
+      - storage-data:/var/www/html/storage
+    ports:
+      - "80:8000"
+      - "443:443"
+      - "2222:22"
+    depends_on:
+      - database
+      - redis
+
+  database:
+    # image: mysql:5.7
+    image: mysql:8.0
+    #image: mysql:8.0.23
+    #image: mysql
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - TZ=${DB_TIMEZONE}
+    ports:
+      - "33305:3306"
+    volumes:
+      - database-data:/var/lib/mysql
+
+  redis:
+    image: redis:6.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+volumes:
+  database-data:
+    driver: "local"
+  redis-data:
+    driver: "local"
+  storage-data:
+    driver: "local"
+
+networks:
+  default:
+    external:
+      name: default-docker-network
