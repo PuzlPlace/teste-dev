@@ -20,9 +20,11 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
 ### Clone o Repositório GitHub
 1. Clonando o Repositório GitHub no Terminal
    -git clone https://github.com/guiparreira98/Guilherme_valli_parreira.git/Backend
+   
 
 2.Navegue até o diretório no terminal
    -cd https://github.com/guiparreira98/Guilherme_valli_parreira.git/Backend
+   
 
 3.Instale as dependências do projeto
    -npm install
