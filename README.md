@@ -1,6 +1,6 @@
 # Teste Prático para vaga de Desenvolvedor Full Stack na PuzlPlace - Desenvolvimento de uma API e SPA
 
-### Sobre o Projeto
+# Sobre o Projeto
 Este projeto consiste em uma aplicação desenvolvida em Node.js para o backend e Vue.js para o frontend, permitindo operações CRUD de uma estante de livros, geração de relatórios e interações em uma SPA(Single Page Application)
 
 ### Requisitos
@@ -12,12 +12,12 @@ Este projeto consiste em uma aplicação desenvolvida em Node.js para o backend 
 ### Banco de dados
 Este projeto utiliza um banco de dados MongoDB para armazenar os dados. A conexão com o banco de dados é feita através do arquivo `conn.js` localizado no diretório `Guilherme_valli_parreira/Backend/db/conn.js`.
 
-# Conexão com o Banco de Dados
+### Conexão com o Banco de Dados
 O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB sem a necessidade de fornecer credenciais de autenticação. Ao executar o código, a conexão com o banco de dados será estabelecida automaticamente.
 
-### Backend
+# Backend
 
-# Clone o Repositório GitHub
+### Clone o Repositório GitHub
 1. Clonando o Repositório GitHub no Terminal
    -git clone https://github.com/guiparreira98/Guilherme_valli_parreira.git/Backend
 
