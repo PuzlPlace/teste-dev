@@ -28,7 +28,7 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
    -npm install
    
 
-# Instalação Nodejs(caso não tenha instalado)
+### Instalação Nodejs(caso não tenha instalado)
 
 1.Acesse o site oficial do Node.js:
   -Visite nodejs.org no seu navegador.
@@ -42,7 +42,7 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
   -Após a instalação ser concluída, abra um terminal ou prompt de comando e execute os seguintes comandos para verificar se o Node.js
   -node -v
 
-# Instalação Node.js no Sistema Linux(caso não tenha instalado)
+### Instalação Node.js no Sistema Linux(caso não tenha instalado)
 1. Abra o terminal no seu sistema Linux.
 
 2.Utilize um dos seguintes métodos para instalar o Node.js
@@ -52,7 +52,7 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
 3.Verificar se o Node.js foi instalado corretamente
    -node -v
    
-# Instalação Node.js no Mac(caso não tenha instalado)
+### Instalação Node.js no Mac(caso não tenha instalado)
 
 1.Instale o Homebrew
    -No terminal digite: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -64,12 +64,12 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
    -node -v
    -npm -v
 
-# Instalar o Express
+### Instalar o Express
 
 1.Instalação
    -npm install express
 
-# Iniciar Aplicação
+### Iniciar Aplicação
 
 1.Executando o aplicativo no Terminal
     
@@ -78,12 +78,12 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
 2.Mensagem Terminal
    - Se aparecer no Terminal as seguintes mensagens: "Servidor Online" e "Conectado ao banco" significa que a Inicialização foi feita Corretamente
 
-### FrontEnd
+# FrontEnd
 
-# Instalando o Vue.js Globalmente
+### Instalando o Vue.js Globalmente
    -npm install -g @vue/cli
 
-# Inicializando o FrontEnd
+### Inicializando o FrontEnd
    1.Acessar o Frontend
       -cd https://github.com/guiparreira98/Guilherme_valli_parreira.git/FrontEnd/frontend
       
