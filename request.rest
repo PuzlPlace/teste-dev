@@ -1,0 +1,23 @@
+POST http://localhost:3000/api/BibliotecaRouter
+Content-Type: application/json
+
+{
+   "id": 1,
+    "nome": "Casa Mal assombrada",
+    "autor": "Guilherme",
+    "categoria":"Terror",
+    "codigo": 123553535,
+    "tipo": "Digital",
+    "tamanho": "Tamanho do Livro",
+    
+}
+
+###
+GET http://localhost:3000/api/bibliotecaRouter
+
+###
+GET http://localhost:3000/api/bibliotecaRouter/655c3576d74b831c5f3ae02f
+
+###
+
+
