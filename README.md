@@ -34,6 +34,7 @@ O arquivo `conn.js` foi configurado para se conectar ao banco de dados MongoDB s
 
 1.Acesse o site oficial do Node.js:
   -Visite nodejs.org no seu navegador.
+  
 2.Baixe o instalador:
   -No site, você verá um botão para baixar o Node.js. Ele oferecerá a versão LTS (Long Term Support) recomendada para a maioria dos usuários. Clique no botão para baixar o instalador.
 
