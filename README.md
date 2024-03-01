@@ -1,4 +1,4 @@
-# PuzLplace
+# PuzlPlace
 
 This project runs with Laravel 10, PHP 8.2, Redis and Mysql.
 
