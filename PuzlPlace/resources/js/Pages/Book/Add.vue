@@ -76,14 +76,13 @@ export default {
     adicionarLivro() {
       axios.post('/books/add', this.book)
         .then(response => {
-          alert('Livro adicionado com sucesso:' + response.data.livro);
+          alert('Livro adicionado com sucesso: ' + response.data.livro.nome);
 
-          // Limpe o formulário
           this.limparFormulario();
         })
         .catch(error => {
-          // Manipule erros (opcional)
-          console.error('Erro ao adicionar o livro:', error.response.data);
+          alert('Erro ao adicionar o livro. Veja o console log para mais detalhes');
+          console.error('Erro ao adicionar o livro:', JSON.stringify(error.response.data));
         });
     },
     limparFormulario() {
