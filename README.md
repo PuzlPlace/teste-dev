@@ -1,6 +1,6 @@
 # PuzlPlace
 
-This project runs with Laravel 10, PHP 8.2, Redis and Mysql.
+This project runs with Laravel 10, PHP 8.2, node v18.19.1 (npm v10.2.4), Vue, Tailwind, Redis and Mysql.
 
 # Installation
 
