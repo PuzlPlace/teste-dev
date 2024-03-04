@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,13 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/books', [BookController::class, 'index'])->middleware(['auth', 'verified'])->name('books');
+Route::get('/books/add', function () {
+    return Inertia::render('Book/Add');
+})->middleware(['auth', 'verified'])->name('add.book');
+
+Route::post('/books/add', [BookController::class, 'add']);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
