@@ -16,20 +16,20 @@ cp .env.example .env
 
 ## start containers
 ```bash
-$ docker-compose up -d --build
+docker-compose up -d --build
 ```
 
 ## Install Vue
 ```bash
-$ php artisan migrate
+php artisan migrate
 ```
 
 ```bash
-$ npm install
+npm install
 ```
 
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 Then open in browser:
