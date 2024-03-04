@@ -25,11 +25,11 @@ $ php artisan migrate
 ```
 
 ```bash
-npm install
+$ npm install
 ```
 
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 Then open in browser:
