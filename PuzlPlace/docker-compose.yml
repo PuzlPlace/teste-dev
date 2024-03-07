@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: '.'
+    container_name: puzl-app
+    ports:
+      - 80:80
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    working_dir: /var/www/
+    volumes:
+      - .:/var/www
+    environment:
+      - BUILD_ENV=development
+    networks:
+      - puzl-network
+  
+  composer:
+    image: composer
+    container_name: puzl-composer
+    volumes:
+      - .:/app
+    command: install --ignore-platform-reqs --no-scripts
+    networks:
+      - puzl-network
+  
+  mysql:
+    image: mysql:5.7
+    platform: linux/x86_64
+    container_name: puzl-db
+    environment: 
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: puzldb
+      MYSQL_USER: puzl_user
+      MYSQL_PASSWORD: puzl_pass
+    ports:
+      - '3306:3306'
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - puzl-network
+  redis:
+    image: redis
+    container_name: puzl-redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 0.5
+    networks:
+      - puzl-network
+networks:
+  puzl-network:
+    name: puzl-network
+    driver: bridge
+volumes:
+  mysqldata:
+    driver: local
