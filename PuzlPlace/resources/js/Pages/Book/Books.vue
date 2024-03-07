@@ -60,6 +60,14 @@ import { Head } from '@inertiajs/vue3';
                                 <p> {{ formatarData(livro.created_at) }} - Atualizado em: {{ formatarData(livro.updated_at) }} </p>
                             </li>
                         </ul>
+                        <div class="flex">
+                          <div v-if="prev_page > 0">
+                            <button class="m-5 bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  @click="carregarLivros(prev_page)">Página Anterior</button>
+                          </div>
+                          <div v-if="next_page <= last_page">
+                            <button class="m-5 bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  @click="carregarLivros(next_page)">Próxima Página</button>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,7 +81,10 @@ import moment from 'moment';
 export default {
   data() {
     return {
-      livros:[],
+      livros: [],
+      prev_page: Number,
+      next_page: Number,
+      last_page: Number,
       filtroTipo: '',       
       filtroAutor: '',      
       filtroNome: '',       
@@ -83,7 +94,7 @@ export default {
     };
   },
   mounted() {
-    this.carregarLivros();
+    this.carregarLivros('1');
   },
   computed: {
     livrosFiltrados() {
@@ -99,10 +110,13 @@ export default {
     },
   },
   methods: {
-    carregarLivros() {
-      axios.get(`/books`)
+    carregarLivros(page) {
+      axios.get('/books?page=' + page)
         .then(response => {
-          this.livros = response.data;
+          this.livros = response.data.data;
+          this.prev_page = (response.data.current_page) - 1;
+          this.next_page = (response.data.current_page) + 1;
+          this.last_page = response.data.last_page;
         })
         .catch(error => {
           console.error('Erro ao carregar os livros:', error.response.data);
@@ -116,6 +130,8 @@ export default {
       this.filtroAutor = '';      
       this.filtroNome = '';       
       this.filtroCategoria = '';
+      this.filtroCData = '';
+      this.filtroUData = '';
     },
   },
 };
