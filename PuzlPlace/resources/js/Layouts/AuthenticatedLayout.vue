@@ -33,6 +33,12 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('add.book')" :active="route().current('add.book')">
                                     Cadastrar Livro
                                 </NavLink>
+                                <NavLink :href="route('edit.books')" :active="route().current('edit.books')">
+                                    Editar Livro
+                                </NavLink>
+                                <NavLink :href="route('del.book')" :active="route().current('del.book')">
+                                    Deletar Livro
+                                </NavLink>
                             </div>
                         </div>
 
@@ -113,8 +119,17 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                        <ResponsiveNavLink :href="route('books')" :active="route().current('books')">
+                            Nossos Livros
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('add.book')" :active="route().current('add.book')">
+                            Cadastrar Livro
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('edit.books')" :active="route().current('edit.books')">
+                            Editar Livro
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('del.book')" :active="route().current('del.book')">
+                            Deletar Livro
                         </ResponsiveNavLink>
                     </div>
 

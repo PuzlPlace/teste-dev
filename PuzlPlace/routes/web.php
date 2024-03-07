@@ -17,13 +17,6 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::get('/books', [BookController::class, 'index'])->middleware(['auth', 'verified'])->name('books');
-Route::get('/books/add', function () {
-    return Inertia::render('Book/Add');
-})->middleware(['auth', 'verified'])->name('add.book');
-
-Route::post('/books/add', [BookController::class, 'add']);
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -33,11 +26,41 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/books/list', function () {
+    return Inertia::render('Book/Books');
+})->middleware(['auth', 'verified'])->name('books');
 
 Route::middleware('auth')->group(function () {
+    
+    Route::get('/books', [BookController::class, 'index']);
+    Route::get('/books/book/{id}', [BookController::class, 'find']);
+
+    Route::get('/books/list', function () {
+        return Inertia::render('Book/Books');
+    })->name('books');
+
+    Route::get('/books/add', function () {
+        return Inertia::render('Book/Add');
+    })->name('add.book');
+
+    Route::post('/books/add', [BookController::class, 'add']);
+
+    Route::get('/books/edit', function () {
+        return Inertia::render('Book/EditList');
+    })->name('edit.books');
+
+    Route::get('/books/edit/{id}', function (string $id) {
+        return Inertia::render('Book/Edit', ['id' => $id]);
+    })->name('edit.book');
+
+    Route::put('/books/edit/{id}', [BookController::class, 'edit']);
+
+    Route::get('/books/delete', function () {
+        return Inertia::render('Book/Delete');
+    })->name('del.book');
+
+    Route::delete('/books/delete/{id}', [BookController::class, 'delete']);
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

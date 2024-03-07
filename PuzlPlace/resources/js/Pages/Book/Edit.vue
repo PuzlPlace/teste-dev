@@ -8,16 +8,16 @@ import { Head } from '@inertiajs/vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cadastrar livro</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editar livro</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Preencha o formulário abaixo para cadastrar um novo livro.</div>
+                    <div class="p-6 text-gray-900">Edite os abaixo para alterar o livro.</div>
                     <div class="inline-block relative m-5">
-                        <form @submit.prevent="adicionarLivro" class="w-full max-w-lg">
-                            <div class="flex flex-wrap -mx-3 mb-6">
+                        <form @submit.prevent="editarLivro" class="w-full max-w-lg">
+                          <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full px-3 mb-6 md:mb-0">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nome">Nome:</label>
                                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" v-model="book.nome" id="nome" type="text" required>
@@ -51,7 +51,7 @@ import { Head } from '@inertiajs/vue3';
                                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" v-model="book.tamanho" id="tamanho" type="text" required>
                                 </div>
                             </div>
-                            <button type="submit" class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Adicionar Livro</button>
+                            <button type="submit" class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
                         </form>
                     </div>
                 </div>
@@ -63,6 +63,9 @@ import { Head } from '@inertiajs/vue3';
 <script>
 import axios from 'axios';
 export default {
+  props: {
+    id: String,
+  },
   data() {
     return {
       book: {
@@ -70,22 +73,33 @@ export default {
         autor: '',
         categoria: '',
         codigo: '',
-        tipo: 'Digital',
+        tipo: '',
         tamanho: '',
       }
     };
   },
+  mounted() {
+    this.carregarLivro(this.id);
+  },
   methods: {
-    adicionarLivro() {
-      axios.post('/books/add', this.book)
+    carregarLivro(id) {
+      axios.get('/books/book/' + id)
         .then(response => {
-          alert('Livro adicionado com sucesso: ' + response.data.livro.nome);
-
-          this.limparFormulario();
+          this.book = response.data;
         })
         .catch(error => {
-          alert('Erro ao adicionar o livro: ' + JSON.stringify(error.response.data.message));
-          console.error('Erro ao adicionar o livro:', JSON.stringify(error.response.data));
+          console.error('Erro ao carregar os livros:', error.response.data);
+        });
+    },
+    editarLivro() {
+      axios.put('/books/edit/' + this.id, this.book)
+        .then(response => {
+          alert('Livro atualizado com sucesso: ' + response.data.livro.nome);
+          this.carregarLivro(this.id);
+        })
+        .catch(error => {
+          alert('Erro ao atualizar o livro: ' + JSON.stringify(error.response.data.message));
+          console.error('Erro ao atualizar o livro:', JSON.stringify(error.response.data));
         });
     },
     limparFormulario() {
@@ -101,9 +115,9 @@ export default {
   },
   watch: {
     'book.tipo'(novoValor, valorAntigo) {
-      // O watcher para a propriedade 'tipo'
-      console.log('Tipo alterado de', valorAntigo, 'para', novoValor);
-
+      if (valorAntigo !== ''){
+        console.log('Tipo alterado de', valorAntigo, 'para', novoValor);
+      }
     },
   },
 };
